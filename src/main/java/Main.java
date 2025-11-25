@@ -653,7 +653,6 @@ public class Main {
                         Prestamos nuevoPrestamo = new Prestamos(isbnPrestar, idSocioPrestamo, fechaAhora, fechaPrevista, null, Prestamos.EstadoPrestamo.PRESTADO);
                         prestamosRepository.realizarPrestamo(nuevoPrestamo);
 
-                        // actualizar disponibilidad del libro
                         libroPrestar.setCantidad_disponible(libroPrestar.getCantidad_disponible() - 1);
                         librosRepository.ActualizarLibros(libroPrestar);
 
@@ -693,7 +692,6 @@ public class Main {
                         java.sql.Date fechaDevolucion = new java.sql.Date(System.currentTimeMillis());
                         prestamosRepository.devolverPrestamo(idPrestamoDevolver, fechaDevolucion);
 
-                        // incrementar disponibilidad del libro
                         String isbnDev = seleccionado.getLibro_isbn();
                         Libros libroDev = librosRepository.obtenerLibroPorIsbn(isbnDev);
                         if (libroDev != null) {
